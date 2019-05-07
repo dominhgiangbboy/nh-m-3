@@ -160,9 +160,9 @@ child_3 = fork();
 	* Dong gop cac thanh vien
 	*/
 	 printf("Thanh vien		Dong gop(%)\n");
-	 printf("Pham Van Doan			40% \n");
+	 printf("Pham Van Doan			35% \n");
 	 printf("Do Minh Giang			30% \n");
-	 printf("Pham Thi Dung 			30% \n");
+	 printf("Pham Thi Dung 			25% \n");
 	 printf("Hoang Ngoc Ha 			5% \n");
 	 printf("Duong Quang Dinh		5% \n");
 	 exit( 0 ); 
