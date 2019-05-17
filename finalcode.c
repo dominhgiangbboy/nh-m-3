@@ -5,9 +5,9 @@
 #include <sys/types.h>
 int main(void)
 {
- pid_t child_1, child_2,child_3,child_0;
+ pid_t child_1, child_2,child_3,child_0,child,child_02;
  int child_status;
- int n;
+ int n,i=0;
 
 /*
 * Thong tin sinh vien 
@@ -28,27 +28,19 @@ int main(void)
 	/*
 	* Ghi hÃ¬nh
 	*/
-
-
-child_0 = fork();
-	 switch ( child_0 ) {
+child = fork();
+	 switch ( child ) {
 	 case -1: // fork khÃ´ng táº¡o Ä‘Æ°á»£c tiáº¿n trÃ¬nh má»›i
 	 printf("\nKhong the tao tien trinh moi");
 	 exit( 1 );
 	 case 0: // fork thÃ nh cÃ´ng, chÃºng ta Ä‘ang á»Ÿ trong tiáº¿n trÃ¬nh con
-	
-
-	//Quay camera
-
-	 system( "ffmpeg -f alsa -i plughw:CARD=Webcam,DEV=0 -f video4linux2 -vcodec mjpeg -s 640x480 -i /dev/video0 -y -t 20 -sameq /tmp/test.mp4" );
-	// Plughw:CARD=Webcam,DEV=0 phai duoc thay bang mot phan cung bang cau lenh arecord -L trong linux se hien len list cac phan cung cua webcam
 
 	//Quay mÃ n hÃ¬nh 
-
-	system ("sudo open simplescreenrecorder");  //sleep(2);
+	system ("ffmpeg -f x11grab  -s 1366x768 -i :0.0 -r 5 -vcodec libx264  record.mp4");
+	sleep(3);
 	
 	//GhÃ©p video
-	system ("ffmpeg -f concat -i video.txt -c copy video.mp4");
+	system ("q");
 	 getppid() ;
 
 	 exit( 0 ); // MÃ£ lá»—i tráº£ vá» cá»§a tiáº¿n trÃ¬nh con
@@ -61,7 +53,60 @@ child_0 = fork();
 	 
 	 }
 
+child_0 = fork();
+	 switch ( child_0 ) {
+	 case -1: // fork khÃ´ng táº¡o Ä‘Æ°á»£c tiáº¿n trÃ¬nh má»›i
+	 printf("\nKhong the tao tien trinh moi");
+	 exit( 1 );
+	 case 0: // fork thÃ nh cÃ´ng, chÃºng ta Ä‘ang á»Ÿ trong tiáº¿n trÃ¬nh con
+	
 
+	//Quay camera
+
+	 system( "ffmpeg -f alsa -i plughw:CARD=PCH,DEV=0 -f video4linux2 -vcodec mjpeg -s 640x480 -i /dev/video0 -y -t 5 -qscale 0 ~/Downloads/nhom3/giang1.mp4" );
+	// Plughw:CARD=Webcam,DEV=0 phai duoc thay bang mot phan cung bang cau lenh arecord -L trong linux se hien len list cac phan cung cua webcam
+
+	//Quay mÃ n hÃ¬nh  //sleep(2);
+	
+	//GhÃ©p video
+
+	
+	 getppid() ;
+
+	 exit( 0 ); // MÃ£ lá»—i tráº£ vá» cá»§a tiáº¿n trÃ¬nh con
+
+	 default: // fork thÃ nh cÃ´ng, chÃºng ta Ä‘ang á»Ÿ trong tiáº¿n trÃ¬nh cha
+
+	wait( &child_status );
+
+	 printf("Ghi xong, tien trinh con 0 hoan thanh.\n");
+	 
+	 }
+
+child_02 = fork();
+	 switch ( child_02) {
+	 case -1: // fork khÃ´ng táº¡o Ä‘Æ°á»£c tiáº¿n trÃ¬nh má»›i
+	 printf("\nKhong the tao tien trinh moi");
+	 exit( 1 );
+	 case 0: // fork thÃ nh cÃ´ng, chÃºng ta Ä‘ang á»Ÿ trong tiáº¿n trÃ¬nh con
+	
+
+	//Quay camera
+
+	//GhÃ©p video
+
+	system ("ffmpeg -f concat -safe 0 -i mylist.txt -c copy video.mp4");
+	 getppid() ;
+
+	 exit( 0 ); // MÃ£ lá»—i tráº£ vá» cá»§a tiáº¿n trÃ¬nh con
+
+	 default: // fork thÃ nh cÃ´ng, chÃºng ta Ä‘ang á»Ÿ trong tiáº¿n trÃ¬nh cha
+
+	wait( &child_status );
+
+	 printf("ghep xong, tien trinh con 02 hoan thanh.\n");
+	 
+	 }
 	/*
 	* NÃ©n video H264
 	*/
@@ -118,10 +163,10 @@ child_1 = fork();
 
 	 sleep(2); 
 	 printf("\nCac thu vien lien ket dong la: \n");
-	 system("ldd BtHDH");
+	 system("ldd ~/Downloads/nhom3/run.out");
 
-	// sleep(400); 
-	// system ("killall ffplay");
+	 sleep(10); 
+	 system ("killall ffplay");
 	sleep(2); 
 	 printf("Tien trinh con 2 hoan thanh.\n");
 	 }
@@ -159,12 +204,12 @@ child_3 = fork();
 	/*
 	* Dong gop cac thanh vien
 	*/
-	 printf("Thanh vien		Dong gop(%)\n");
-	 printf("Pham Van Doan			35% \n");
-	 printf("Do Minh Giang			30% \n");
-	 printf("Pham Thi Dung 			25% \n");
-	 printf("Hoang Ngoc Ha 			5% \n");
-	 printf("Duong Quang Dinh		5% \n");
+	 printf("Thanh vien		Dong gop()\n");
+	 printf("Pham Van Doan			35 \n");
+	 printf("Do Minh Giang			30 \n");
+	 printf("Pham Thi Dung 			25 \n");
+	 printf("Hoang Ngoc Ha 			5 \n");
+	 printf("Duong Quang Dinh		5 \n");
 	 exit( 0 ); 
 
  return ( 0 );
